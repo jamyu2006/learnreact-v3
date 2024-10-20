@@ -28,9 +28,9 @@ const router = createBrowserRouter(
     </Route>
   )
 );
-//<Game/>
+//<RouterProvider router={router}/>
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}/>
+    <XGame/>
   </StrictMode>,
 )
