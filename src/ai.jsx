@@ -22,10 +22,23 @@ export function two_in_a_row(squares, symbol) {
     return null;
 }
 
-export function getAImove(squares) {
+export function getAImoveO(squares) {
+
+    console.log("ai is O");
+
     const emptySquares = squares
         .map((val, index) => (val === null ? index : null))
         .filter(val => val !== null);
+
+    const findWin = two_in_a_row(squares, 'O');
+    if (findWin !== null) {
+        return findWin; // Return the win if there's one
+    }
+
+    const blockMove = two_in_a_row(squares, 'X');
+    if (blockMove !== null) {
+        return blockMove; // Return the block move if there's one
+    }
 
     if (emptySquares.length === 8) {
         if (emptySquares.includes(4)) {
@@ -54,14 +67,49 @@ export function getAImove(squares) {
         }
     }
 
-    const findWin = two_in_a_row(squares, 'O');
+    const randomIndex = Math.floor(Math.random() * emptySquares.length);
+    return emptySquares[randomIndex];
+}
+
+export function getAImoveX(squares) {
+
+    console.log("ai is X");
+
+    const emptySquares = squares
+        .map((val, index) => (val === null ? index : null))
+        .filter(val => val !== null);
+
+    const findWin = two_in_a_row(squares, 'X');
     if (findWin !== null) {
         return findWin; // Return the win if there's one
     }
 
-    const blockMove = two_in_a_row(squares, 'X');
+    const blockMove = two_in_a_row(squares, 'O');
     if (blockMove !== null) {
         return blockMove; // Return the block move if there's one
+    }
+
+    if(emptySquares.length === 9){
+        console.log("the first move");
+        return 0;
+    } else if(emptySquares.length === 7){
+        if(squares[2] === 'O' || squares[4] === 'O' || squares[6] === 'O'){
+            return 8;
+        } else if(squares[5] === 'O' || squares[7] === 'O' || squares[8]  === 'O') {
+            return 2;
+        } else if(squares[3] === 'O') {
+            return 2;
+        } else if(squares[1] === 'O'){
+            return 6;
+        }
+    } else if(emptySquares.length === 5) {
+        if(squares[1] === 'O' && squares[3] === 'O') {
+            return 4;
+        } else if (squares[1] === 'O' && squares[8] === 'O'){
+            return 6;
+        } else if(squares[1] === 'O' && squares[5] === 'O'){
+            return 6;
+        }
     }
 
     const randomIndex = Math.floor(Math.random() * emptySquares.length);

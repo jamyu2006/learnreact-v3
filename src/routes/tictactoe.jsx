@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './styles.css'
 import { useEffect } from 'react';
-import { getAImove } from '../ai';
+import { getAImoveX, getAImoveO } from '../ai';
 
 let playerisX = true;
 
@@ -37,7 +37,7 @@ function Board({ squares, onPlay }) {
 
     const winner = calculateWinner(nextSquares);
     if (!winner && nextSquares.includes(null)) {
-      const aiMove = getAImove(nextSquares);
+      const aiMove = playerisX ? getAImoveO(nextSquares) : getAImoveX(nextSquares);
       nextSquares[aiMove] = playerisX ? "O" : "X";
       onPlay(nextSquares);
     }
@@ -99,7 +99,7 @@ export default function Game({ whomoves }) {
     if (!playerisX) {
       const timeout = setTimeout(() => {
         const initialSquares = Array(9).fill(null);
-        const aiMove = 4; // AI's first move in the center square
+        const aiMove = getAImoveX(initialSquares); // AI's first move in the center square
         initialSquares[aiMove] = 'X'; // Set AI's first move
         setHistory([initialSquares]); // Update history with AI's first move
         setCurrentMove(0); // Reset current move
