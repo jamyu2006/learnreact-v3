@@ -147,7 +147,7 @@ function getAImove(squares) {
   return emptySquares[randomIndex];
 }
 
-export default function OGame(){
+export default function XGame(){
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
   //const xIsNext = currentMove % 2 === 0;
