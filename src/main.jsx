@@ -5,8 +5,7 @@ import App from './App.jsx'
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom'
 import ErrorPage from './error-page.jsx';
 import Root from './routes/root.jsx'
-import OGame from './routes/AiIsO.jsx'
-import XGame from './routes/AiIsX.jsx';
+import Game from './routes/tictactoe.jsx';
 import { action as rootAction } from './routes/root.jsx';
 
 const router = createBrowserRouter(
@@ -19,18 +18,18 @@ const router = createBrowserRouter(
     >
       <Route 
         path='xgame'
-        element={<XGame/>}
+        element={<Game key="xgame" whomoves={"playerisO"}/>}
       />
       <Route 
         path='ogame'
-        element={<OGame/>}
+        element={<Game key="ogame" whomoves={"playerisX"}/>}
       />
     </Route>
   )
 );
-//<RouterProvider router={router}/>
+//<XGame/>
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <XGame/>
+    <RouterProvider router={router}/>
   </StrictMode>,
 )
