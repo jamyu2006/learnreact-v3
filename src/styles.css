@@ -1,0 +1,205 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  color: #333;
+}
+
+code {
+  font-size: 1.2em;
+}
+
+ul {
+  padding-inline-start: 20px;
+}
+
+/* Game Styles */
+.game {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.status {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Board and Square Styles */
+.board-row:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+.square {
+  background: #FFF;
+  border: 2px solid #ddd;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 50px;
+  height: 50px;
+  margin-right: -2px;
+  margin-top: -2px;
+  padding: 0;
+  text-align: center;
+  width: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.square:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}
+
+.square.X {
+  color: #ff6f61;
+  background-color: #ffe3e0;
+}
+
+.square.O {
+  color: #42a5f5;
+  background-color: #e0f7fa;
+}
+
+.square.X, .square.O {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Centering and styling the board */
+.game-board {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.status-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* This vertically centers the content */
+  height: 50px; /* Set a fixed height to ensure vertical centering */
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f0f4f8;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.status {
+  font-size: 18px;
+  font-weight: bold;
+  color: #97419f;
+  text-align: center; /* Center the text horizontally */
+  line-height: 1.5; /* Adjust as necessary */
+}
+
+.status.player-wins {
+  color: #28a745; /* Green for player wins */
+}
+
+.status.ai-wins {
+  color: #dc3545; /* Red for AI wins */
+}
+
+.status.tie {
+  color: #ffc107; /* Yellow for a tie */
+}
+
+/* Styles for the forms and their container */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between the two buttons */
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Styling the buttons inside the form */
+button {
+  background-color: #6200ea; /* Purple background for the buttons */
+  color: white; /* White text color */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #3700b3; /* Darker purple on hover */
+  transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+/* For better spacing and alignment */
+button:focus {
+  outline: none; /* Remove outline when focusing */
+}
+
+button:active {
+  background-color: #5600ea; /* Slightly different color on click */
+  transform: scale(1); /* Remove scaling on click */
+}
+
+.game-info {
+  display: flex;
+  justify-content: center; /* Center the content */
+  align-items: center; /* Vertically center the content */
+  margin: 20px; /* Add margin around the section */
+  padding: 20px; /* Add padding inside the section */
+  background-color: #f9f9f9; /* Light background color */
+  border: 2px solid #4c2d64; /* Border around the section */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Moves Container */
+.moves-container {
+  font-size: 1.5rem; /* Increase font size */
+  font-weight: bold; /* Make the text bold */
+  margin: 10px 0; /* Add vertical spacing */
+  color: #ae0000; /* Darker text color */
+  text-align: center; /* Center the text */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .game-info {
+    flex-direction: column; /* Stack items on smaller screens */
+    align-items: flex-start; /* Align to the left */
+  }
+
+  .moves-container {
+    margin: 10px 0; /* Vertical spacing on smaller screens */
+  }
+}
+
+
+.back-button {
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  text-decoration: none; /* Remove underline */
+  color: #ae0000; /* Button text color */
+  font-size: 1.5rem; /* Increase font size */
+  margin-bottom: 20px; /* Space below the button */
+  transition: color 0.3s; /* Smooth color transition */
+}

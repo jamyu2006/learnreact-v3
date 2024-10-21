@@ -1,12 +1,14 @@
 import { useState } from 'react'
-import './styles.css'
+import '../styles.css'
 import { useEffect } from 'react';
 import { getAImoveX, getAImoveO } from '../ai';
+import { Link } from 'react-router-dom';
 
 let playerisX = true;
 
 function Square({ value, onSquareClick }) {
-  return <button className="square" onClick={onSquareClick}>{value}</button>;
+  const className = value ? `square ${value}` : 'square'; // Add 'X' or 'O' based on the value
+  return <button className={className} onClick={onSquareClick}>{value}</button>;
 }
 
 function Board({ squares, onPlay }) {
@@ -46,21 +48,27 @@ function Board({ squares, onPlay }) {
 
   const winner = calculateWinner(squares);
   let status;
+  let statusClass = "";
 
   if (winner) {
     if (winner === 'X' && playerisX || winner === 'O' && !playerisX) {
-      status = 'Player wins';
+      status = 'Player Wins!';
+      statusClass = 'player-wins';
     }
     else {
-      status = 'AI wins';
+      status = 'AI Wins!';
+      statusClass = 'ai-wins';
     }
   } else if (!squares.slice().includes(null)) {
-    status = 'tie';
+    status = 'Tie!';
+    statusClass = 'tie';
   } else {
     if (xIsNext && playerisX || !playerisX && !xIsNext) {
       status = 'Players Move';
+      statusClass = '';
     } else {
       status = 'AIs Move';
+      statusClass = '';
     }
   }
 
@@ -81,7 +89,9 @@ function Board({ squares, onPlay }) {
 
   return (
     <>
-      <div className="status">{status}</div>
+      <div className="status-container">
+        <div className={`status ${statusClass}`}>{status}</div>
+      </div>
       {rows}
     </>
   );
@@ -128,18 +138,25 @@ export default function Game({ whomoves }) {
     } else {
       description = "Go to game start";
     }
-    return (<li key={move}>
+    return (<div className="moves-container" key={move}>
       <button onClick={() => jumpTo(move)}>{description}</button>
-    </li>);
+    </div>);
   });
 
   return (
-    <div className="game">
-      <div className="game-board">
-        <Board squares={currentSquares} onPlay={handlePlay} />
+    <div>
+      <div>
+        <Link to="/" className="back-button">
+          <button>&larr;</button>
+        </Link>
       </div>
-      <div className="game-info">
-        <ol> {moves} </ol>
+      <div className="game">
+        <div className="game-board">
+          <Board squares={currentSquares} onPlay={handlePlay} />
+        </div>
+        <div className="game-info">
+          <div> {moves} </div>
+        </div>
       </div>
     </div>
   );

@@ -7,6 +7,8 @@ import Root from './routes/root.jsx'
 import Game from './routes/tictactoe.jsx';
 import { action as rootAction } from './routes/root.jsx';
 
+import './styles.css';
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
